@@ -1,3 +1,0 @@
-[submodule "web-server"]
-	path = web-server
-	url = git@pers:Nem-mod/web-server.git
