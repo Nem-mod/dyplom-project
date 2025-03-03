@@ -1,0 +1,19 @@
+meta {
+  name: Get User by Id
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{host}}/users/:id
+  body: none
+  auth: none
+}
+
+params:path {
+  id: 8
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImlhdCI6MTc0MTAwNTg3OCwiZXhwIjoxNzQxMDA2MTc4fQ.5rszgYvkwYmNJQ_fCPuFTvJ-0zAyiLJzUiYQNJ9bhUo
+}

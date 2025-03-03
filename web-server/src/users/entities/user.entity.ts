@@ -18,7 +18,7 @@ export class UserEntity {
   updatedAt: Date;
 
   @Exclude()
-  password: string | null;  // Allow 'null' here too
+  password: string;  // Allow 'null' here too
 
   constructor(partial: Partial<User>) {
     Object.assign(this, partial);

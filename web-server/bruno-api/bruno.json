@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "name": "Web-server",
+  "name": "web-server",
   "type": "collection",
   "ignore": [
     "node_modules",
