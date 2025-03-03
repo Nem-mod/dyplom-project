@@ -8,12 +8,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Example model - modify according to your needs
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String?
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         Int              @id @default(autoincrement())
+  email      String           @unique
+  name       String?
+  password   String?
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+  workspaces UserWorkspaces[]
+}
+
+model Workspace {
+  id         Int              @id @default(autoincrement())
+  name       String
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+  dashboards Dashboard[] // связь с дешбордами
+  users      UserWorkspaces[]
+}
+
+model Dashboard {
+  id          Int       @id @default(autoincrement())
+  name        String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+  workspaceId Int
+}
+
+model UserWorkspaces {
+  userId      Int
+  workspaceId Int
+  user        User      @relation(fields: [userId], references: [id])
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+
+  @@id([userId, workspaceId])
 }
