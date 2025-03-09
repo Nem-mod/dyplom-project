@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
+import { stringify } from 'csv-stringify';
 import { DataSource } from 'typeorm';
 
 @Injectable()
@@ -30,5 +31,24 @@ export class TimescaleService {
     await this.dataSource.query(`
       INSERT INTO ${tableName}(data) VALUES ($1);
     `, [JSON.stringify(data)]);
+  }
+
+  async insertMultipleDashboardEvents(tableName: string, events: Record<string, any>[]) {
+    const query = `
+      INSERT INTO ${tableName}(data) 
+      SELECT jsonb_array_elements($1::jsonb);
+    `;
+
+    await this.dataSource.query(query, [JSON.stringify(events)]);
+  }
+
+  async exportEventsToCSV(tableName: string): Promise<Buffer> {
+    const events = await this.dataSource.query(`SELECT * FROM ${tableName}`);
+    return new Promise((resolve, reject) => {
+      stringify(events, { header: true }, (err, output) => {
+        if (err) return reject(err);
+        resolve(Buffer.from(output));
+      });
+    });
   }
 }
