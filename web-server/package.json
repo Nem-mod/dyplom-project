@@ -8,7 +8,6 @@
   "prisma": {
     "seed": "ts-node ./src/prisma/seed.ts"
   },
-  
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -31,6 +30,7 @@
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/swagger": "^11.0.6",
+    "@nestjs/typeorm": "^11.0.0",
     "@prisma/client": "^6.3.1",
     "@types/bcrypt": "^5.0.2",
     "bcryptjs": "^3.0.2",
@@ -38,9 +38,11 @@
     "class-validator": "^0.14.1",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
+    "pg": "^8.13.3",
     "prisma": "^6.3.1",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.21"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
