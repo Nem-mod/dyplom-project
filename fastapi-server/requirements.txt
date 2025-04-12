@@ -9,3 +9,5 @@ uvicorn==0.34.0
 scipy
 typing
 scikit-learn==1.6.1
+llama-index-embeddings-openai==0.3.1
+llama-index-experimental==0.5.4
