@@ -1,0 +1,11 @@
+load-dotenv==0.1.0
+fastapi==0.115.12
+numpy==2.2.4
+llama-index==0.12.30
+llama-index-vector-stores-postgres==0.4.2
+pandas==2.2.3
+SQLAlchemy==2.0.40
+uvicorn==0.34.0
+scipy
+typing
+scikit-learn==1.6.1

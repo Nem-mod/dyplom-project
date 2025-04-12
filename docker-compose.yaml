@@ -53,6 +53,21 @@ services:
   #     - postgresql
   #     - timescaledb
 
+  fastapi:
+    build:
+      context: ./fastapi-server
+    container_name: fastapi
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://admin:adminpassword@postgresql:5432/my_postgres_db
+    networks:
+      - database_network
+    depends_on:
+      postgresql:
+        condition: service_healthy
+
   prisma-studio:
     image: node:lts-alpine3.17
     working_dir: /usr/src/app
