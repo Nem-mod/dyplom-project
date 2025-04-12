@@ -1,11 +1,26 @@
 meta {
   name: Upload csv
   type: http
-  seq: 1
+  seq: 2
 }
 
 post {
-  url: {{host}}/dasboards/events/bulk/csv
-  body: none
+  url: {{host}}/dashboards/events/bulk/csv
+  body: multipartForm
   auth: none
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0NDQ4NTkyNSwiZXhwIjoxNzQ3MDc3OTI1fQ.-jLMQ4kK96H8WAgROC5CcmLRvfi5j0Jg9x8vT526UMM
+}
+
+body:json {
+  {
+    "timescaleIdentifier": "dashboard_4"
+  }
+}
+
+body:multipart-form {
+  file: @file(D:\Downloads\customers-100.csv)
+  timescaleIdentifier: dashboard_1
 }

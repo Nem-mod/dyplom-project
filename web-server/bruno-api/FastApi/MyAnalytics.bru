@@ -1,0 +1,22 @@
+meta {
+  name: MyAnalytics
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{fastApihost}}/analyze-my/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "table_name": "dashboard_1",
+    "message": "Give me analysis of the data in database. Find info about East Richard"
+  }
+}
+
+vars:pre-request {
+  table: dashboard_4
+}

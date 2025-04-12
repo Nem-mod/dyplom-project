@@ -1,0 +1,21 @@
+meta {
+  name: Create
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{host}}/workspaces
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0NDQ4NTU1OSwiZXhwIjoxNzQ3MDc3NTU5fQ.SfnxRMuTVnDJJJKvTx6b9vL65oNFb53vwQu-XPsKdo0
+}
+
+body:json {
+  {
+    "name": "myworkspace"
+  }
+}
