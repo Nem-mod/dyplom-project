@@ -8,11 +8,11 @@ import { TimescaleService } from './timescale.service';
     TypeOrmModule.forRoot({
       name: 'timescaleConnection',
       type: 'postgres',
-      host: process.env.TIMESCALE_HOST,
-      port: Number(process.env.TIMESCALE_PORT),
-      username: process.env.TIMESCALE_USER,
-      password: process.env.TIMESCALE_PASSWORD,
-      database: process.env.TIMESCALE_DB,
+      host: process.env.TIMESCALE_HOST || 'localhost',
+      port: Number(process.env.TIMESCALE_PORT) || 5433,
+      username: process.env.TIMESCALE_USER || 'admin',
+      password: process.env.TIMESCALE_PASSWORD || 'adminpassword',
+      database: process.env.TIMESCALE_DB || 'my_timescale_db',
       synchronize: false, // Explicit schema management
     }),
   ],
