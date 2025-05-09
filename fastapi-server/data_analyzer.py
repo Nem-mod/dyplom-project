@@ -60,12 +60,11 @@ class DataAnalyzer:
         numeric_columns = self.cleaned_df.select_dtypes(include=[np.number]).columns.tolist()
 
         return f""" 
-You are a professional data analysis agent with access to structured event data extracted from a PostgreSQL database.
-The data has been normalized from a JSONB column into a flat table format.
-
+You are a professional data analysis agent with access to structured event data.
 Your task is to independently analyze this dataset using the tools provided and produce a **single, well-structured, human-readable report** — as if written by a professional data analyst.
 
 ### Your responsibilities:
+- Follow user's requests
 - Understand the structure and context of the data
 - Identify the likely type of dataset (e.g., user behavior, logs, e-commerce, etc.)
 - Select and invoke relevant tools automatically (no user instruction expected)
@@ -77,14 +76,6 @@ Your task is to independently analyze this dataset using the tools provided and 
 - Total columns: {len(all_columns)}
 - Available columns: {', '.join(all_columns)}
 - Numeric columns: {', '.join(numeric_columns) if numeric_columns else 'None'}
-
-### Output format (strictly one report):
-1. **Dataset Context** – What kind of data is this?
-2. **Key Metrics** – Summary stats, data types, distributions
-3. **Correlations & Relationships** – Significant variable relationships
-4. **Outlier Analysis** – Anomalies and how they differ
-5. **Clustering** – Distinct patterns or groupings
-6. **Recommendations** – Next steps and suggestions
 
 ### Tone & Style Guidelines:
 - Be clear, insightful, and human — like a data analyst writing for product managers or business stakeholders.
@@ -102,7 +93,7 @@ Your task is to independently analyze this dataset using the tools provided and 
 5. `linear_regression_summary()` – Fit linear model (target = numeric column)
 
 You must call relevant tools as needed and return only one comprehensive report.
-Final output write in HTML format so it can be inserted in existing html file. Do not use \\u \\n and familiar
+Final output write in HTML format so it can be inserted in existing html file. Do not use \\u2014 \\n and familiar
 """
 
     async def describe_data(self) -> dict:
@@ -148,6 +139,8 @@ Final output write in HTML format so it can be inserted in existing html file. D
 
     async def perform_kmeans_clustering(self, n_clusters: int = 3) -> dict:
         """
+        Args:
+            n_clusters (int): Number of clusters.
         Performs KMeans clustering on numeric features and returns an interpretable summary.
         Works with any dataset, automatically infers numeric columns and explains cluster profiles.
         """
