@@ -6,8 +6,8 @@ llama-index-vector-stores-postgres==0.4.2
 pandas==2.2.3
 SQLAlchemy==2.0.40
 uvicorn==0.34.0
-scipy
-typing
 scikit-learn==1.6.1
 llama-index-embeddings-openai==0.3.1
-llama-index-experimental==0.5.4
+weasyprint
+markdown
+# llama-index-experimental==0.5.4

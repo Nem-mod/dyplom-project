@@ -45,3 +45,53 @@ model UserWorkspaces {
 
   @@id([userId, workspaceId])
 }
+
+// // Роли пользователя в воркспейсе
+// enum Role {
+//   ADMIN
+//   USER
+// }
+
+// model User {
+//   id         Int              @id @default(autoincrement())
+//   email      String           @unique
+//   name       String?
+//   password   String
+//   createdAt  DateTime         @default(now())
+//   updatedAt  DateTime         @updatedAt
+//   workspaces UserWorkspaces[]
+// }
+
+// model Workspace {
+//   id         Int              @id @default(autoincrement())
+//   name       String
+//   createdAt  DateTime         @default(now())
+//   updatedAt  DateTime         @updatedAt
+//   dashboards Dashboard[] 
+//   users      UserWorkspaces[]
+// }
+
+// model Dashboard {
+//   id                  Int       @id @default(autoincrement())
+//   name                String
+//   timescaleIdentifier String?   @unique @default("")
+//   accessToken         String    @unique @default(uuid()) // Уникальный токен доступа
+//   createdAt           DateTime  @default(now())
+//   updatedAt           DateTime  @updatedAt
+//   workspace           Workspace @relation(fields: [workspaceId], references: [id])
+//   workspaceId         Int
+// }
+
+// model UserWorkspaces {
+//   userId               Int
+//   workspaceId          Int
+//   user                 User      @relation(fields: [userId], references: [id])
+//   workspace            Workspace @relation(fields: [workspaceId], references: [id])
+
+//   role                 Role      @default(USER)
+//   canManageDashboards  Boolean   @default(false)
+//   canRequestAnalytics  Boolean   @default(false)
+//   canGetAccessToken    Boolean   @default(false)
+
+//   @@id([userId, workspaceId])
+// }

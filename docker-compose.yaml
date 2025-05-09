@@ -29,7 +29,7 @@ services:
     networks:
       - database_network
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U postgres -d postgres']
+      test: ['CMD-SHELL', 'pg_isready -U admin -d my_postgres_db']
       interval: 5s
       timeout: 2s
       retries: 20
@@ -57,6 +57,8 @@ services:
     build:
       context: ./fastapi-server
     container_name: fastapi
+    volumes:
+      - ./fastapi-server/reports:/app/reports
     restart: always
     ports:
       - "8000:8000"
@@ -67,24 +69,6 @@ services:
     depends_on:
       postgresql:
         condition: service_healthy
-
-  prisma-studio:
-    image: node:lts-alpine3.17
-    working_dir: /usr/src/app
-    volumes:
-      - ./web-server/prisma:/usr/src/app
-    command: npx prisma studio --port 5555 --browser none
-    ports:
-      - '5555:5555'
-    environment:
-      - NODE_ENV=production
-      - DATABASE_URL=postgresql://admin:adminpassword@postgresql:5432/my_postgres_db?schema=public
-    networks:
-      - database_network
-    depends_on:
-      postgresql:
-        condition: service_healthy
-
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin

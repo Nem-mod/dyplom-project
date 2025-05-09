@@ -1,11 +1,9 @@
 import logging
 import os
 import sys
-
+from pprint import pprint
 from llama_index.core import set_global_handler
-from llama_index.core.agent.workflow import FunctionAgent
-from llama_index.experimental.query_engine.pandas import PandasQueryEngine
-from llama_index.core.tools import QueryEngineTool, FunctionTool
+from llama_index.core.agent.workflow import FunctionAgent, AgentOutput
 from llama_index.llms.openai import OpenAI
 import pandas as pd
 import numpy as np
@@ -61,30 +59,51 @@ class DataAnalyzer:
         all_columns = self.df.columns.tolist()
         numeric_columns = self.cleaned_df.select_dtypes(include=[np.number]).columns.tolist()
 
-        return f"""
-    You are a data analysis agent integrated with access to structured event data extracted from a PostgreSQL database. 
-    The data was loaded from a JSONB column and flattened into a table. All values follow a consistent schema.
+        return f""" 
+You are a professional data analysis agent with access to structured event data extracted from a PostgreSQL database.
+The data has been normalized from a JSONB column into a flat table format.
 
-    Here is the structure of the current dataset:
+Your task is to independently analyze this dataset using the tools provided and produce a **single, well-structured, human-readable report** — as if written by a professional data analyst.
 
-    - Total columns: {len(all_columns)}
-    - Available columns: {', '.join(all_columns)}
-    - Numeric columns: {', '.join(numeric_columns) if numeric_columns else 'None'}
+### Your responsibilities:
+- Understand the structure and context of the data
+- Identify the likely type of dataset (e.g., user behavior, logs, e-commerce, etc.)
+- Select and invoke relevant tools automatically (no user instruction expected)
+- Interpret the results clearly and professionally
+- Present insights, observations, and hypotheses in a structured format
+- Offer recommendations based on patterns and anomalies
 
-    You can use the following tools:
+### Dataset overview:
+- Total columns: {len(all_columns)}
+- Available columns: {', '.join(all_columns)}
+- Numeric columns: {', '.join(numeric_columns) if numeric_columns else 'None'}
 
-    1. `table_query_tool` – Query the Pandas DataFrame directly.
-    2. `describe_data` – Get summary statistics of all columns.
-    3. `correlation_matrix` – See how numeric columns relate to each other.
-    4. `detect_outliers` – Find anomalies in numeric data using Isolation Forest.
-    5. `perform_kmeans_clustering` – Group data into clusters (on numeric columns).
-    6. `linear_regression_summary` – Build a regression model. Requires a numeric target column.
+### Output format (strictly one report):
+1. **Dataset Context** – What kind of data is this?
+2. **Key Metrics** – Summary stats, data types, distributions
+3. **Correlations & Relationships** – Significant variable relationships
+4. **Outlier Analysis** – Anomalies and how they differ
+5. **Clustering** – Distinct patterns or groupings
+6. **Recommendations** – Next steps and suggestions
 
-    Always check if the user-requested column exists and is numeric before running a regression or clustering.
-    If unsure, call `describe_data` or `available_columns` first.
+### Tone & Style Guidelines:
+- Be clear, insightful, and human — like a data analyst writing for product managers or business stakeholders.
+- Explain patterns and why they matter.
+- Avoid overly technical terms unless they're clearly explained.
+- Use bullet points and sections for clarity.
+- Highlight anything surprising or counterintuitive.
+- Do not list raw data or tables unless necessary.
 
-    Return answers in clear, structured form (dict/list).
-    """
+### Available tools:
+1. `describe_data()` – Summarize each column
+2. `correlation_matrix()` – Show numeric relationships
+3. `detect_outliers()` – Find anomalies via Isolation Forest
+4. `perform_kmeans_clustering()` – Group data via KMeans
+5. `linear_regression_summary()` – Fit linear model (target = numeric column)
+
+You must call relevant tools as needed and return only one comprehensive report.
+Final output write in HTML format so it can be inserted in existing html file. Do not use \\u \\n and familiar
+"""
 
     async def describe_data(self) -> dict:
         """Provides descriptive statistics (mean, std, min, max, etc.) for each column."""
@@ -162,6 +181,7 @@ class DataAnalyzer:
         }
 
         return summary
+
     async def linear_regression_summary(self, target_col: str) -> dict:
         """
         Fits a linear regression model using the specified target column.
@@ -186,12 +206,13 @@ class DataAnalyzer:
     async def query(self, message):
 
         llm = OpenAI(
-            model="o3-mini",
-            temperature=0.3,
+            model="gpt-4.1",
+            temperature=1,
+
             api_key=os.getenv("OPENAI_API_KEY")
         )
 
-        query_engine = PandasQueryEngine(df=self.df, verbose=True)
+        # query_engine = PandasQueryEngine(df=self.df, verbose=True)
 
         query_engine_tools = [
             # QueryEngineTool.from_defaults(
@@ -212,5 +233,7 @@ class DataAnalyzer:
             system_prompt=self.build_system_prompt()
         )
 
-        return await agent.run(message)
+        response: AgentOutput = await agent.run(message)
+
+        return response.response.blocks[0].text
         # return await self.perform_kmeans_clustering()
