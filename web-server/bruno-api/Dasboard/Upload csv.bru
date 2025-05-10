@@ -11,7 +11,7 @@ post {
 }
 
 headers {
-  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0NDQ4NTkyNSwiZXhwIjoxNzQ3MDc3OTI1fQ.-jLMQ4kK96H8WAgROC5CcmLRvfi5j0Jg9x8vT526UMM
+  Authorization: Bearer {{token}}
 }
 
 body:json {
@@ -21,6 +21,6 @@ body:json {
 }
 
 body:multipart-form {
-  file: @file(E:\spotify_history.csv)
+  file: @file(E:\marketing_campaign.csv)
   timescaleIdentifier: dashboard_2
 }

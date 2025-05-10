@@ -1,0 +1,38 @@
+meta {
+  name: PostE
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{host}}/dashboards/events
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+    "timescaleIdentifier": "dashboard_1",
+    "metadata": {
+      "ts": "2015-10-27 06:00:37",
+                  "shuffle": "TRUE",
+                  "skipped": "TRUE",
+                  "platform": "android",
+                  "ms_played": "2647",
+                  "album_name": "Who Are You",
+                  "reason_end": "backbtn",
+                  "track_name": "Who Are You",
+                  "artist_name": "The Who",
+                  "reason_start": "fwdbtn",
+                  "spotify_track_uri": "02DurCgOvDdX0uKEjqcl3W"
+    }
+  }
+}
+
+vars:pre-request {
+  timescaleIdentifier: dashboard_1
+}

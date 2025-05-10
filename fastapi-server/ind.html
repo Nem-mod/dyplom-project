@@ -1,0 +1,189 @@
+<html>\n
+<head><title>Event Data Analysis Report</title></head>
+\n
+<body>\n<h2>Event Data Analysis Report</h2>\n\n<h3>1. Dataset Context</h3>\n
+<ul>\n
+    <li><b>Type of Data:</b> This dataset represents user music listening sessions, most likely exported from a
+        streaming platform such as Spotify. Each row logs a playback event or track interaction.
+    </li>
+    \n
+    <li><b>Columns Overview:</b> The main columns include timestamps, track/album/artist identifiers, playback duration,
+        platform type, engagement signals (skipped, shuffle), and outcome reasons.
+    </li>
+    \n
+    <li><b>Possible Usage:</b> The dataset is ideal for understanding user behavior, platform engagement, content
+        popularity, and session outcomes.
+    </li>
+    \n
+</ul>
+\n\n<h3>2. Key Metrics</h3>\n
+<ul>\n
+    <li><b>Observational Volume:</b> <b>299,720</b> playback events.</li>
+    \n
+    <li><b>Key Columns (Types & Highlights):</b>\n
+        <ul>\n
+            <li><b>ts:</b> Timestamps (140K+ unique), indicating fine-grained event capture.</li>
+            \n
+            <li><b>shuffle / skipped:</b> Boolean values (TRUE/FALSE), showing random playback and skip activity.</li>
+            \n
+            <li><b>platform:</b> Categorical (6 unique), dominated by \"android\" (~279K events).</li>
+            \n
+            <li><b>ms_played:</b> Normalized playback length (mean=0.08, std=0.08, range 0–1).</li>
+            \n
+            <li><b>album_name / artist_name / track_name:</b> Highly diverse, indicating a broad library. Top artist:
+                \"The Beatles\" (27,242 plays).
+            </li>
+            \n
+            <li><b>reason_end / reason_start:</b> 14–16 event outcome types, \"trackdone\" most common (>150K).</li>
+            \n
+            <li><b>Created At:</b> Numeric (likely flag or partitioning, range 0–1, bimodal distribution).</li>
+            \n
+        </ul>
+        \n
+    </li>
+    \n
+    <li><b>Distribution Observations:</b>\n
+        <ul>\n
+            <li><b>Playback Completion:</b> Most tracks <i>not</i> skipped (~95% are 'skipped=FALSE').</li>
+            \n
+            <li><b>Shuffle Mode:</b> Enabled for the majority (~74%).</li>
+            \n
+            <li><b>Platform:</b> Strong skew towards \"android\" device usage, web player is minor.</li>
+            \n
+        </ul>
+        \n
+    </li>
+    \n
+</ul>
+\n\n<h3>3. Correlations & Relationships</h3>\n
+<ul>\n
+    <li><b>Correlation Matrix:</b> Not available due to type coercion issues, but based on distributions:\n
+        <ul>\n
+            <li><b>ms_played</b> and <b>skipped</b>: Likely inverse — lower ms_played when skipped.</li>
+            \n
+            <li><b>platform</b> and playback length: Potential platform biases in session time.</li>
+            \n
+        </ul>
+        \n
+    </li>
+    \n
+    <li><b>Reason Patterns:</b> \"trackdone\" as both the primary reason for ending and starting a track suggests
+        continuous listening sessions.
+    </li>
+    \n
+</ul>
+\n\n<h3>4. Outlier Analysis</h3>\n
+<ul>\n
+    <li><b>Anomaly Detection:</b>\n
+        <ul>\n
+            <li><b>Total Outliers:</b> 29,935 records (~10% of data) detected as anomalous.</li>
+            \n
+            <li><b>Examples:</b> Many outliers are from the \"web player\" platform, dated far earlier (e.g., 2013),
+                with mid-to-low normalized 'ms_played', and event reasons like \"clickrow\" instead of \"trackdone\".
+            </li>
+            \n
+        </ul>
+        \n
+    </li>
+    \n
+    <li><b>Interpretation:</b> Outliers often reflect older or unusual session patterns (e.g., atypical user actions,
+        manual selection events) and possibly different platform behaviors over time.
+    </li>
+    \n
+</ul>
+\n\n<h3>5. Clustering (User/Session Groupings)</h3>\n
+<ul>\n
+    <li>KMeans clustering (3 clusters) on numeric features ('ms_played', 'Created At', 'outlier status') revealed:\n
+        <ul>\n
+            <li><b>Cluster 0 (46%):</b> Low playback duration, 'Created At' early (0.0), outlier-positive (likely
+                historical atypical events).
+            </li>
+            \n
+            <li><b>Cluster 1 (44%):</b> Similarly low playback duration, 'Created At' late (1.0), outlier-positive
+                (recent atypical or fragmented sessions).
+            </li>
+            \n
+            <li><b>Cluster 2 (10%):</b> Higher average playback duration (~0.14), 'Created At' mid-period (~0.6),
+                outlier-negative (typical/consistent engagement).
+            </li>
+            \n
+        </ul>
+        \n
+    </li>
+    \n
+    <li><b>Summary:</b> Cluster 2 appears to represent engaged, normal listening; Clusters 0 and 1 are denser in
+        outliers and may represent edge-case behaviors or legacy data.
+    </li>
+    \n
+</ul>
+\n\n<h3>6. Recommendations</h3>\n
+<ul>\n
+    <li><b>Platform Insights:</b>\n
+        <ul>\n
+            <li>Consider investigating the strong \"android\" platform dominance; tailor product improvements towards
+                this demographic, but also explore growth levers for underrepresented platforms.
+            </li>
+            \n
+        </ul>
+        \n
+    </li>
+    \n
+    <li><b>Behavioral Segmentation:</b>\n
+        <ul>\n
+            <li>Leverage cluster 2 as an engaged user benchmark—seek to move outlier-users (clusters 0/1) towards this
+                cohort by exploring causes for abnormal events (e.g., why are certain sessions much shorter or
+                start/stop for less typical reasons?).
+            </li>
+            \n
+        </ul>
+        \n
+    </li>
+    \n
+    <li><b>Outlier Management:</b>\n
+        <ul>\n
+            <li>Examine anomalous sessions for data quality or experience issues, especially those linked to the \"web
+                player\" and older 'Created At' values (possible deprecated features or tracking bugs).
+            </li>
+            \n
+        </ul>
+        \n
+    </li>
+    \n
+    <li><b>Data Quality:</b>\n
+        <ul>\n
+            <li>Review and potentially filter legacy data (e.g., pre-‘Created At’=0.5) in trend analyses to avoid skew
+                from outmoded patterns.
+            </li>
+            \n
+        </ul>
+        \n
+    </li>
+    \n
+    <li><b>Product/Content Recommendations:</b>\n
+        <ul>\n
+            <li>Expand or maintain content from top artists (e.g., \"The Beatles\") and investigate why certain
+                tracks/albums consistently draw high engagement or skips.
+            </li>
+            \n
+        </ul>
+        \n
+    </li>
+    \n
+    <li><b>Further Analysis:</b>\n
+        <ul>\n
+            <li>Analyze session length versus skip/completion to reveal deeper content or UX optimizations.</li>
+            \n
+            <li>If available, examine user cohorts over time as new features or platforms launch.</li>
+            \n
+        </ul>
+        \n
+    </li>
+    \n
+</ul>
+\n\n
+<hr>
+\n<i>For deeper business impact, focus on converting outlier-heavy clusters to engaged listeners, and investigate any
+    systemic issues in anomalous event types or legacy platform behaviors.</i>\n
+</body>
+\n
+</html>

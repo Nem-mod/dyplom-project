@@ -1,0 +1,26 @@
+meta {
+  name: Export csv
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{host}}/dashboards/events/bulk/csv
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+    "timescaleIdentifier": "dashboard_4"
+  }
+}
+
+body:multipart-form {
+  file: @file(E:\marketing_campaign.csv)
+  timescaleIdentifier: dashboard_2
+}

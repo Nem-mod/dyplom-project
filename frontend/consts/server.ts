@@ -1,0 +1,3 @@
+export const WEBSERVER_URL = 'http://localhost:3000';
+export const AUTH_TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0Njc5NTMzNiwiZXhwIjoxNzQ5Mzg3MzM2fQ.WGZg8-lBm0zKwtdU8XJ1dus8wY8bBT7frTGAjV_Niz0';
+export const ANALYTICS_URL = 'http://localhost:8000'

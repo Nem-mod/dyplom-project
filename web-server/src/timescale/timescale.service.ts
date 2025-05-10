@@ -33,6 +33,29 @@ export class TimescaleService {
     `, [JSON.stringify(data)]);
   }
 
+  async getDashboardEventsPaginated(
+    tableName: string,
+    page: number = 1,
+    limit: number = 10,
+  ): Promise<{ data: any[]; total: number; }> {
+    const offset = (page - 1) * limit;
+
+    // Count total records for pagination
+    const countResult = await this.dataSource.query(`
+    SELECT COUNT(*) FROM ${tableName};
+  `);
+    const total = parseInt(countResult[0].count, 10);
+
+    // Fetch paginated data
+    const rows = await this.dataSource.query(`
+    SELECT * FROM ${tableName}
+    ORDER BY timestamp DESC
+    LIMIT $1 OFFSET $2;
+  `, [limit, offset]);
+
+    return { data: rows, total };
+  }
+
   async insertMultipleDashboardEvents(tableName: string, events: Record<string, any>[]) {
     const query = `
       INSERT INTO ${tableName}(data) 
@@ -43,9 +66,23 @@ export class TimescaleService {
   }
 
   async exportEventsToCSV(tableName: string): Promise<Buffer> {
-    const events = await this.dataSource.query(`SELECT * FROM ${tableName}`);
+    const rows = await this.dataSource.query(`SELECT * FROM ${tableName} ORDER BY timestamp ASC`);
+
+    if (!rows.length) {
+      return Buffer.from('timestamp\n'); // Пустой CSV
+    }
+
+    // Распарсить каждый data JSON и добавить timestamp
+    const flatRows = rows.map(row => {
+      const parsed = typeof row.data === 'string' ? JSON.parse(row.data) : row.data;
+      return {
+        timestamp: row.timestamp,
+        ...parsed, // spread JSON fields as columns
+      };
+    });
+
     return new Promise((resolve, reject) => {
-      stringify(events, { header: true }, (err, output) => {
+      stringify(flatRows, { header: true }, (err, output) => {
         if (err) return reject(err);
         resolve(Buffer.from(output));
       });

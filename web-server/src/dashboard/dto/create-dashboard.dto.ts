@@ -7,6 +7,10 @@ export class CreateDashboardDto {
   @IsNotEmpty()
   name: string;
 
+  @IsString()
+  @IsNotEmpty()
+  description: string;
+
   @ApiProperty({ example: 1, description: 'The ID of the workspace' })
   @IsInt()
   @IsNotEmpty()

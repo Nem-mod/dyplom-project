@@ -1,0 +1,454 @@
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebPage",
+			"@id": "https://www.laugh.events/improv-for-business#page",
+			"url": "https://www.laugh.events/improv-for-business",
+			"name": "In-Person Comedy Events",
+			"alternateName": "On-Site Comedy Events for Learning, Training, and Team Building",
+			"headline": "On-Site Comedy Events for Learning, Training, and Team Building",
+			"description": "On-site events tailored for learning, training, professional development, team building, and bonding. Perfect for company retreats, off-sites, and all-hands gatherings.",
+			"about": "On-site events tailored for learning, training, professional development, team building, and bonding. Perfect for company retreats, off-sites, and all-hands gatherings.",
+			"datePublished": "2025-04-04T16:48:16+00:00",
+			"dateModified": "2025-04-04T16:48:16+00:00",
+			"thumbnailUrl": "https://images.squarespace-cdn.com/content/v1/608152f9777deb0f04d1fba0/af8637be-fd67-40c2-965b-0448dd691f30/IMG_7635.jpg?format=2500w",
+			"thumbnail": {
+				"@type": "ImageObject",
+				"@id": "https://www.laugh.events/improv-for-business#mainImage",
+				"url": "https://images.squarespace-cdn.com/content/v1/608152f9777deb0f04d1fba0/af8637be-fd67-40c2-965b-0448dd691f30/IMG_7635.jpg?format=2500w",
+				"contentUrl": "https://images.squarespace-cdn.com/content/v1/608152f9777deb0f04d1fba0/af8637be-fd67-40c2-965b-0448dd691f30/IMG_7635.jpg?format=2500w",
+				"width": "517",
+				"height": "636",
+				"representativeOfPage": true,
+				"potentialAction": {
+					"@type": "ViewAction",
+					"target": "https://images.squarespace-cdn.com/content/v1/608152f9777deb0f04d1fba0/af8637be-fd67-40c2-965b-0448dd691f30/IMG_7635.jpg?format=2500w",
+					"actionStatus": "https://schema.org/PotentialActionStatus"
+				}
+			},
+			"image": {
+				"@id": "https://www.laugh.events/improv-for-business#mainImage"
+			},
+			"primaryImageOfPage": {
+				"@id": "https://www.laugh.events/improv-for-business#mainImage"
+			},
+			"potentialAction": {
+				"@type": "ReadAction",
+				"target": "https://www.laugh.events/improv-for-business",
+				"actionStatus": "https://schema.org/PotentialActionStatus",
+				"actionAccessibilityRequirement": {
+					"@type": "ActionAccessSpecification",
+					"requiresSubscription": false
+				},
+				"provider": {
+					"@id": "https://www.laugh.events/#org"
+				}
+			},
+			"breadcrumb": {
+				"@type": "BreadcrumbList",
+				"itemListOrder": "https://schema.org/ItemListOrderAscending",
+				"itemListElement": [
+					{
+						"@type": "ListItem",
+						"position": 1,
+						"name": "Best Corporate Comedy Experiences | Laugh.Events",
+						"item": "https://www.laugh.events/"
+					},
+					{
+						"@type": "ListItem",
+						"position": 2,
+						"name": "On-Site Comedy Events for Learning, Training, and Team Building — Laugh.Events",
+						"item": "https://www.laugh.events/improv-for-business"
+					}
+				]
+			},
+			"usageInfo": [
+				"https://www.laugh.events/terms-of-service",
+				"https://www.laugh.events/privacy-policy"
+			],
+			"license": [
+				"https://www.laugh.events/terms-of-service",
+				"https://www.laugh.events/privacy-policy"
+			],
+			"mainEntity": [
+				{
+					"@type": "Question",
+					"name": "What are the various team-building activities that you offer?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Our core experiences include applied improvisation, games and gameshows, stand up comedy, musical comedy, juggling and jokes, inclusion events, and much more."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "How do you offer laughter with corporate activities?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Regardless of which corporate event that you choose, an expert comedian, host, or facilitator will ensure that there is laughter in each event we do. Depending on the event type you choose, attendees will participate heavily or barely at all (except for belly laughs)."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What kind of events and industries do you cater?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "A Laugh Event can be done across any type of event and industry. We have done internal-facing events, networking events, sales dinners, charity events, and tons of other event types. Our events span every industry including tech, hospitality, finance, secondary education, healthcare, accounting, marketing agencies, startups, huge organizations, and every other industry you can think of."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What are the benefits from laughing more and incorporating humor at work?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Laughter is an effective tool that we’ve been using since man made fire and laughed at his friend for burning his eyebrows off. Ok, that might not have happened, but we know laughter has been around for a long time. Using humor at work doesn’t mean to make more jokes or swing for the fences to make people laugh, it’s all about being open to the energy that someone is sharing."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What is the best corporate event for celebrating with your team?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "The best corporate event for celebrating with your team is a live comedy show. Have your team gather around and be wildly entertained by hilarious comedians with a clean corporate friendly comedy show."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What is the best corporate event for effective team building and employee engagement?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "The best corporate event for effective team building and employee engagement is in our Laughing and Development event types. These events leverage fun games facilitated by trained professional improvisers with the goal of sharing laughter with one another and growing team bonds."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What is the best corporate event for effectively communicating and improving communication skills?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Using Humor for Professional Development is a type of Laughing & Development event that focuses on learning while laughing. This event involves games and exercises facilitated by a professionally trained improviser that will take you through a carefully crafted curriculum."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What are quotes on why laughter and play are important professional tools?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "\"You can discover more about a person in an hour of play than in a year of conversation.\" - Plato\n\"Play is the highest form of research.\" - Albert Einstein"
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What is the common goal of a Laugh Event?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "The common goal of a Laugh Event is to help people laugh more. By doing so, we believe you allow people to feel comfortable bringing their most authentic selves to work."
+					}
+				}
+			],
+			"inLanguage": "en",
+			"isFamilyFriendly": true,
+			"creditText": "Laugh.Events",
+			"relatedLink": "https://www.laugh.events/contact",
+			"significantLink": "https://www.laugh.events/contact",
+			"audience": {
+				"@id": "https://www.laugh.events/#audience"
+			},
+			"isPartOf": {
+				"@id": "https://www.laugh.events/#site"
+			},
+			"reviewedBy": {
+				"@id": "https://www.laugh.events/#org"
+			},
+			"publisher": {
+				"@id": "https://www.laugh.events/#org"
+			},
+			"copyrightHolder": {
+				"@id": "https://www.laugh.events/#org"
+			},
+			"author": {
+				"@id": "https://www.laugh.events/#org"
+			},
+			"creator": {
+				"@id": "https://www.laugh.events/#org"
+			},
+			"provider": {
+				"@id": "https://www.laugh.events/#org"
+			},
+			"maintainer": {
+				"@id": "https://www.laugh.events/#org"
+			}
+		},
+		{
+			"@type": "ImageObject",
+			"@id": "https://www.laugh.events/#logoImage",
+			"url": "https://images.squarespace-cdn.com/content/608152f9777deb0f04d1fba0/26b20db8-4493-442c-ac9d-3ead637478c1/laugh.events.logo%404x.png?content-type=image%2Fpng",
+			"contentUrl": "https://images.squarespace-cdn.com/content/608152f9777deb0f04d1fba0/26b20db8-4493-442c-ac9d-3ead637478c1/laugh.events.logo%404x.png?content-type=image%2Fpng",
+			"width": "796",
+			"height": "135",
+			"potentialAction": {
+				"@type": "ViewAction",
+				"target": "https://images.squarespace-cdn.com/content/608152f9777deb0f04d1fba0/26b20db8-4493-442c-ac9d-3ead637478c1/laugh.events.logo%404x.png?content-type=image%2Fpng",
+				"actionStatus": "https://schema.org/PotentialActionStatus"
+			}
+		},
+		{
+			"@type": "WebSite",
+			"@id": "https://www.laugh.events/#site",
+			"url": "https://www.laugh.events/",
+			"name": "laugh.events",
+			"alternateName": [
+				"Laugh Events",
+				"LaughEvents",
+				"Laugh Dot Inc.",
+				"Laugh Dot",
+				"LaughDot",
+				"Laugh Dot Events"
+			],
+			"headline": "Best Corporate Comedy Experiences | Laugh.Events",
+			"alternativeHeadline": "Elevate team building with events that make you laugh",
+			"description": "Laugh.Events delivers unique events via clean, corporate, engaging comedy experiences for hybrid team building, virtual happy hours games, corporate holiday party events, executive team building through improv for business, and stand up shows for things to do after work.",
+			"inLanguage": "en",
+			"isFamilyFriendly": true,
+			"isAccessibleForFree": true,
+			"creditText": "Laugh.Events",
+			"thumbnailUrl": "https://images.squarespace-cdn.com/content/608152f9777deb0f04d1fba0/26b20db8-4493-442c-ac9d-3ead637478c1/laugh.events.logo%404x.png?content-type=image%2Fpng",
+			"image": {
+				"@id": "https://www.laugh.events/#logoImage"
+			},
+			"thumbnail": {
+				"@id": "https://www.laugh.events/#logoImage"
+			},
+			"usageInfo": [
+				"https://www.laugh.events/terms-of-service",
+				"https://www.laugh.events/privacy-policy"
+			],
+			"license": [
+				"https://www.laugh.events/terms-of-service",
+				"https://www.laugh.events/privacy-policy"
+			],
+			"sameAs": [
+				"https://www.instagram.com/laugh.events/",
+				"https://www.linkedin.com/company/laugh-events",
+				"https://www.facebook.com/people/LaughEvents/100052640961863/"
+			],
+			"audience": {
+				"@type": "BusinessAudience",
+				"@id": "https://www.laugh.events/#audience",
+				"audienceType": "business",
+				"name": "business",
+				"geographicArea": {
+					"@type": "Country",
+					"@id": "https://www.laugh.events/#country",
+					"name": "US",
+					"address": {
+						"@type": "PostalAddress",
+						"name": "United States",
+						"addressCountry": "US"
+					}
+				}
+			},
+			"about": {
+				"@id": "https://www.laugh.events/#org"
+			},
+			"publisher": {
+				"@id": "https://www.laugh.events/#org"
+			},
+			"copyrightHolder": {
+				"@id": "https://www.laugh.events/#org"
+			},
+			"author": {
+				"@id": "https://www.laugh.events/#org"
+			},
+			"creator": {
+				"@id": "https://www.laugh.events/#org"
+			},
+			"provider": {
+				"@id": "https://www.laugh.events/#org"
+			},
+			"maintainer": {
+				"@id": "https://www.laugh.events/#org"
+			}
+		},
+		{
+			"@type": "Organization",
+			"@id": "https://www.laugh.events/#org",
+			"url": "https://www.laugh.events/",
+			"name": "Laugh.Events",
+			"alternateName": [
+				"Laugh Events",
+				"LaughEvents",
+				"Laugh Dot Inc.",
+				"Laugh Dot",
+				"LaughDot",
+				"Laugh Dot Events"
+			],
+			"legalName": "Laugh Dot Incorporated",
+			"description": "Laugh.Events delivers unique events via clean, corporate, engaging comedy experiences for hybrid team building, virtual happy hours games, corporate holiday party events, executive team building through improv for business, and stand up shows for things to do after work.",
+			"email": "kevin@laugh.events",
+			"areaServed": {
+				"@id": "https://www.laugh.events/#country"
+			},
+			"image": {
+				"@id": "https://www.laugh.events/#logoImage"
+			},
+			"logo": {
+				"@id": "https://www.laugh.events/#logoImage"
+			},
+			"sameAs": [
+				"https://www.instagram.com/laugh.events/",
+				"https://www.linkedin.com/company/laugh-events",
+				"https://www.facebook.com/people/LaughEvents/100052640961863/"
+			],
+			"brand": {
+				"@type": "Brand",
+				"@id": "https://www.laugh.events/#brand",
+				"url": "https://www.laugh.events/",
+				"name": "Laugh.Events",
+				"alternateName": [
+					"Laugh Events",
+					"LaughEvents",
+					"Laugh Dot Inc.",
+					"Laugh Dot",
+					"LaughDot",
+					"Laugh Dot Events"
+				],
+				"description": "Laugh.Events delivers unique events via clean, corporate, engaging comedy experiences for hybrid team building, virtual happy hours games, corporate holiday party events, executive team building through improv for business, and stand up shows for things to do after work.",
+				"image": {
+					"@id": "https://www.laugh.events/#logoImage"
+				},
+				"logo": {
+					"@id": "https://www.laugh.events/#logoImage"
+				},
+				"sameAs": [
+					"https://www.instagram.com/laugh.events/",
+					"https://www.linkedin.com/company/laugh-events",
+					"https://www.facebook.com/people/LaughEvents/100052640961863/"
+				]
+			},
+			"address": {
+				"@type": "PostalAddress",
+				"@id": "https://www.laugh.events/#address",
+				"streetAddress": "174 Grand Street",
+				"addressLocality": "New York",
+				"addressRegion": "NY",
+				"postalCode": "10013",
+				"addressCountry": "US"
+			},
+			"contactPoint": {
+				"@type": "ContactPoint",
+				"@id": "https://www.laugh.events/#contactPoint",
+				"url": "https://www.laugh.events/contact",
+				"name": "Contact us",
+				"availableLanguage": "en",
+				"contactOption": "TollFree",
+				"email": "kevin@laugh.events",
+				"contactType": "customer service",
+				"image": {
+					"@id": "https://www.laugh.events/#logoImage"
+				},
+				"areaServed": {
+					"@id": "https://www.laugh.events/#country"
+				}
+			},
+			"additionalProperty": [
+				{
+					"@type": "PropertyValue",
+					"name": "Terms of Service",
+					"url": "https://www.laugh.events/terms-of-service"
+				},
+				{
+					"@type": "PropertyValue",
+					"name": "Privacy Policy",
+					"url": "https://www.laugh.events/privacy-policy"
+				}
+			]
+		},
+		{
+			"@context": "https://schema.org",
+			"@type": "Service",
+			"@id": "https://www.laugh.events/improv-for-business/#service",
+			"url": "https://www.laugh.events/improv-for-business/",
+			"name": "On-Site Comedy Events for Learning, Training, and Team Building",
+			"alternateName": "On-Site Comedy Events for Learning, Training, and Team Building",
+			"description": "On-site events tailored for learning, training, professional development, team building, and bonding. Perfect for company retreats, off-sites, and all-hands gatherings.",
+			"category": "Laughing Development",
+			"serviceType": "Laughing Development",
+			"image": {
+				"@id": "https://www.laugh.events/improv-for-business/#mainImage"
+			},
+			"mainEntityOfPage": {
+				"@id": "https://www.laugh.events/improv-for-business/#page"
+			},
+			"potentialAction": {
+				"@type": "UseAction",
+				"target": "https://www.laugh.events/improv-for-business/",
+				"actionStatus": "https://schema.org/PotentialActionStatus",
+				"actionAccessibilityRequirement": {
+					"@type": "ActionAccessSpecification",
+					"requiresSubscription": false
+				},
+				"provider": {
+					"@id": "https://www.laugh.events/#org"
+				}
+			},
+			"availableChannel": {
+				"@type": "ServiceChannel",
+				"serviceUrl": "https://www.laugh.events/improv-for-business/",
+				"availableLanguage": "en",
+				"servicePostalAddress": {
+					"@id": "https://www.laugh.events/#address"
+				}
+			},
+			"offers": {
+				"@type": "Offer",
+				"url": "https://www.laugh.events/improv-for-business/",
+				"name": "On-Site Comedy Events for Learning, Training, and Team Building",
+				"alternateName": "On-Site Comedy Events for Learning, Training, and Team Building",
+				"description": "On-site events tailored for learning, training, professional development, team building, and bonding. Perfect for company retreats, off-sites, and all-hands gatherings.",
+				"category": "Laughing Development",
+				"image": {
+					"@id": "https://www.laugh.events/improv-for-business/#mainImage"
+				},
+				"isFamilyFriendly": true,
+				"areaServed": {
+					"@id": "https://www.laugh.events/#country"
+				},
+				"offeredBy": {
+					"@id": "https://www.laugh.events/#org"
+				},
+				"seller": {
+					"@id": "https://www.laugh.events/#org"
+				},
+				"potentialAction": {
+					"@type": "UseAction",
+					"target": "https://www.laugh.events/improv-for-business/",
+					"actionStatus": "https://schema.org/PotentialActionStatus",
+					"actionAccessibilityRequirement": {
+						"@type": "ActionAccessSpecification",
+						"requiresSubscription": false
+					},
+					"provider": {
+						"@id": "https://www.laugh.events/#org"
+					}
+				}
+			},
+			"providerMobility": "dynamic",
+			"termsOfService": "https://www.laugh.events/terms-of-service",
+			"provider": {
+				"@id": "https://www.laugh.events/#org"
+			},
+			"brand": {
+				"@id": "https://www.laugh.events/#brand"
+			},
+			"areaServed": {
+				"@id": "https://www.laugh.events/#country"
+			},
+			"audience": {
+				"@id": "https://www.laugh.events/#audience"
+			},
+			"logo": {
+				"@id": "https://www.laugh.events/#logoImage"
+			}
+		}
+	]
+}	

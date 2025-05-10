@@ -91,9 +91,10 @@ Your task is to independently analyze this dataset using the tools provided and 
 3. `detect_outliers()` – Find anomalies via Isolation Forest
 4. `perform_kmeans_clustering()` – Group data via KMeans
 5. `linear_regression_summary()` – Fit linear model (target = numeric column)
-
+If “Created At” = 0 ignore it
 You must call relevant tools as needed and return only one comprehensive report.
 Final output write in HTML format so it can be inserted in existing html file. Do not use \\u2014 \\n and familiar
+
 """
 
     async def describe_data(self) -> dict:

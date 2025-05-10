@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, UseGuards, ParseIntPipe, BadRequestException, UploadedFile, UseInterceptors, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, UseGuards, ParseIntPipe, BadRequestException, UploadedFile, UseInterceptors, Res, Query } from '@nestjs/common';
 import { DashboardService } from './dashboard.service';
 import { CreateDashboardDto } from './dto/create-dashboard.dto';
 import { UpdateDashboardDto } from './dto/update-dashboard.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { ApiTags, ApiOperation, ApiBearerAuth, ApiBody } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBearerAuth, ApiBody, ApiQuery } from '@nestjs/swagger';
 import { DashboardGuard } from './guards/dashboard.guard';
 import { AddEventDto } from './dto/add-event.dto';
 import { TimescaleService } from '../timescale/timescale.service';
@@ -28,6 +28,24 @@ export class DashboardController {
   }
 
 
+
+  @Get('/events')
+  @ApiOperation({ summary: 'Get paginated events from events table' })
+  @ApiQuery({ name: 'timescaleIdentifier', required: true, description: 'Hypertable name' })
+  @ApiQuery({ name: 'page', required: false, type: Number, example: 1 })
+  @ApiQuery({ name: 'limit', required: false, type: Number, example: 10 })
+  getPaginatedEvents(
+    @Query('timescaleIdentifier') tableName: string,
+    @Query('page') page = 1,
+    @Query('limit') limit = 10,
+  ) {
+    return this.timescaleService.getDashboardEventsPaginated(
+      tableName,
+      Number(page),
+      Number(limit),
+    );
+  }
+
   @Post("/events")
   @ApiOperation({ summary: 'Add new event to events table' })
   @ApiBody({ type: AddEventDto })
@@ -41,6 +59,8 @@ export class DashboardController {
   addMultipleEventsEvent(@Body() addEventDto: AddEventsDto) {
     return this.timescaleService.insertMultipleDashboardEvents(addEventDto.timescaleIdentifier, addEventDto.metadata);
   }
+
+
 
   @Post('/events/bulk/csv')
   @UseInterceptors(FileInterceptor('file'))

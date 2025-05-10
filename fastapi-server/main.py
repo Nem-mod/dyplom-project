@@ -13,6 +13,7 @@ import markdown
 import smtplib
 import os
 from email.message import EmailMessage
+from fastapi.middleware.cors import CORSMiddleware
 
 def markdown_to_html(text: str) -> str:
     # Декодируем Unicode-escape, если текст выглядит как \u0417\u0432...
@@ -27,7 +28,13 @@ def markdown_to_html(text: str) -> str:
 
 app = FastAPI()
 DB_URL = "postgresql://admin:adminpassword@timescaledb:5432/my_timescale_db"
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # только для твоего фронта
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # DB_URL = "postgresql://admin:adminpassword@localhost:5433/my_timescale_db"
 @app.get("/analyze/{table_name}")
@@ -48,6 +55,7 @@ def analyze_table(table_name: str):
 class Item(BaseModel):
     table_name: str
     message: str
+    email: str
 
 
 @app.post("/analyze-my/")
@@ -59,9 +67,9 @@ async def analyze_table(item: Item):
     save_analysis_report_to_pdf(json.dumps(summary), report_file)
     send_pdf_report_via_email(
         pdf_path=report_file,
-        subject="📊 Ваш аналитический отчёт готов",
-        body="Отчёт по данным был успешно сформирован. Он приложен в PDF-формате.",
-        to_email="necha.enemy@gmail.com",
+        subject="📊 Твій аналітичний звіт створено",
+        body="Eventalytica",
+        to_email=item.email,
         from_email="necha.enemy@gmail.com",
         smtp_host="smtp.gmail.com",
         smtp_port=465,
@@ -77,19 +85,56 @@ def save_analysis_report_to_pdf(report_text: str, output_path: str = "/app/repor
     # Простейший шаблон HTML
     html_template = Template("""
     <html>
-    <head>
-        <meta charset="utf-8">
-        <style>
-            body { font-family: sans-serif; padding: 2em; }
-            h1, h2 { color: #2c3e50; }
-            pre { background-color: #f5f5f5; padding: 1em; border-radius: 4px; }
-        </style>
-    </head>
-    <body>
-        <h1>Data Analysis Report</h1>
-        <p><em>Generated: {{ date }}</em></p>
-        <div>{{ report }}</div>
-    </body>
+        <head>
+            <meta charset="utf-8" />
+            <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                'Helvetica Neue', sans-serif;
+                padding: 2em;
+                background-color: #f9f9f9;
+                color: #2c3e50;
+                line-height: 1.6;
+            }
+            .container {
+                background: #ffffff;
+                border-radius: 8px;
+                padding: 2em;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            }
+            h1 {
+                font-size: 24px;
+                margin-bottom: 0.5em;
+            }
+            h2 {
+                font-size: 18px;
+                margin-top: 2em;
+            }
+            .meta {
+                font-size: 14px;
+                color: #7f8c8d;
+                margin-bottom: 1.5em;
+            }
+            pre {
+                background-color: #f5f5f5;
+                padding: 1em;
+                border-radius: 4px;
+                overflow-x: auto;
+            }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+            <h1>Аналітичний звіт</h1>
+            <p class="meta">Дата генерації: <strong>{{ date }}</strong></p>
+
+            <h2>Результати</h2>
+            <div>{{ report }}</div>
+
+            <h2>Вихідні дані</h2>
+            <pre>{{ raw_data }}</pre>
+            </div>
+        </body>
     </html>
     """)
 

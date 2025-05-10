@@ -5,7 +5,9 @@ import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/comm
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  app.enableCors({
+  origin: '*', // ✅ Allow requests from any domain
+});
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
@@ -15,6 +17,7 @@ async function bootstrap() {
     .setVersion('0.1')
     .addBearerAuth()
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
